@@ -1,3 +1,4 @@
+//
 /*
  Copyright (c) 2020, Apple Inc. All rights reserved.
  
@@ -28,28 +29,41 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+@testable import CareKit
+import CareKitStore
+import CareKitUI
+import Combine
 import Foundation
 import SwiftUI
+import XCTest
 
-extension View {
+class TestChecklistTaskViewModel: XCTestCase {
 
-    /// Conditionally apply modifiers to a view.
-    func `if`<TrueContent: View>(_ condition: Bool, trueContent: (Self) -> TrueContent) -> some View {
-        condition ?
-            ViewBuilder.buildEither(first: trueContent(self)) :
-            ViewBuilder.buildEither(second: self)
+    var controller: OCKChecklistTaskController!
+    var cancellable: AnyCancellable?
+
+    override func setUp() {
+        super.setUp()
+        let store = OCKStore(name: "carekit-store", type: .inMemory)
+        controller = .init(storeManager: .init(wrapping: store))
     }
 
-    /// Opposite effect of applying a `mask`. This will use the alpha channel of the mask to cut a shape out of the view.
-    func inverseMask<Mask: View>(_ mask: Mask) -> some View {
-        self.mask(mask
-            .foregroundColor(.black)
-            .background(Color.white)
-            .compositingGroup()
-            .luminanceToAlpha())
+    func testViewModelCreation() {
+        let taskEvents = OCKTaskEvents.mock(eventsHaveOutcomes: false, occurrences: 1)
+        let event = taskEvents.first?.first
+        controller.taskEvents = taskEvents
+
+        let updated = expectation(description: "view model updated")
+        cancellable = controller.$viewModel
+            .compactMap { $0 }
+            .sink { viewModel in
+                XCTAssertEqual(event?.task.title, viewModel.title)
+                XCTAssertEqual(OCKScheduleUtility.scheduleLabel(for: event), viewModel.detail)
+                XCTAssertEqual(event?.outcome != nil, viewModel.isComplete)
+                updated.fulfill()
+            }
+
+        wait(for: [updated], timeout: 1)
     }
-    
-    func scaled(size: CGFloat) -> some View {
-        return self.modifier(ScaledFontModifier(size: size))
-    }
+
 }

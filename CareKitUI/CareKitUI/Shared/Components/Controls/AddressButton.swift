@@ -28,28 +28,53 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import Contacts
 import Foundation
 import SwiftUI
 
-extension View {
-
-    /// Conditionally apply modifiers to a view.
-    func `if`<TrueContent: View>(_ condition: Bool, trueContent: (Self) -> TrueContent) -> some View {
-        condition ?
-            ViewBuilder.buildEither(first: trueContent(self)) :
-            ViewBuilder.buildEither(second: self)
-    }
-
-    /// Opposite effect of applying a `mask`. This will use the alpha channel of the mask to cut a shape out of the view.
-    func inverseMask<Mask: View>(_ mask: Mask) -> some View {
-        self.mask(mask
-            .foregroundColor(.black)
-            .background(Color.white)
-            .compositingGroup()
-            .luminanceToAlpha())
+public struct AddressButton: View {
+    @Environment(\.careKitStyle) private var style
+    
+    private let title: Text
+    private let detail: Text
+    private let image: Image
+    
+    fileprivate let action: (() -> Void)?
+    
+    public var body: some View {
+        Button(action: action ?? {}) {
+            VStack(alignment: .leading) {
+                HStack {
+                    title.fontWeight(.semibold)
+                        .font(.footnote)
+                    Spacer()
+                    image
+                }
+                detail.fontWeight(.regular)
+                    .font(.footnote)
+                    .foregroundColor(Color(style.color.label))
+                    .lineLimit(nil)
+                    .fixedSize(horizontal: false, vertical: true)
+                    
+            }.padding()
+            .background(Color(style.color.quaternaryCustomFill))
+            .cornerRadius(style.appearance.cornerRadius2)
+            
+        }
     }
     
-    func scaled(size: CGFloat) -> some View {
-        return self.modifier(ScaledFontModifier(size: size))
+    public init(title: Text,detail: Text,image: Image,action: (() -> Void)?) {
+        self.title = title
+        self.detail = detail
+        self.action = action
+        self.image = image
     }
 }
+
+#if DEBUG
+struct AddressButton_Previews: PreviewProvider {
+    static var previews: some View {
+        AddressButton(title: Text("Address"),detail: Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum scelerisque, erat a rutrum fermentum, nulla massa feugiat ligula, ac porttitor magna nibh et nisl."),image: Image(systemName: "location"), action: nil)
+    }
+}
+#endif

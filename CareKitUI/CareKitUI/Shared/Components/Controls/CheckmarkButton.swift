@@ -28,28 +28,47 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import Foundation
 import SwiftUI
 
-extension View {
-
-    /// Conditionally apply modifiers to a view.
-    func `if`<TrueContent: View>(_ condition: Bool, trueContent: (Self) -> TrueContent) -> some View {
-        condition ?
-            ViewBuilder.buildEither(first: trueContent(self)) :
-            ViewBuilder.buildEither(second: self)
-    }
-
-    /// Opposite effect of applying a `mask`. This will use the alpha channel of the mask to cut a shape out of the view.
-    func inverseMask<Mask: View>(_ mask: Mask) -> some View {
-        self.mask(mask
-            .foregroundColor(.black)
-            .background(Color.white)
-            .compositingGroup()
-            .luminanceToAlpha())
-    }
+public struct CheckmarkButton: View {
+    @Environment(\.careKitStyle) private var style
     
-    func scaled(size: CGFloat) -> some View {
-        return self.modifier(ScaledFontModifier(size: size))
+    @State var isChecked = false
+    var action: (() -> Void)?
+    
+    public var body: some View {
+        Button(action: {
+            if let action = self.action {
+                action()
+            }
+            
+            self.isChecked.toggle()
+        }) {
+            ZStack {
+                Circle()
+                    .fill(Color.accentColor)
+                
+                 Circle()
+                    .fill( isChecked ? Color.accentColor : Color.clear)
+                    .scaled(size: style.appearance.borderWidth1)
+                
+                GeometryReader { geometry in
+                    Image(systemName: "checkmark")
+                        .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
+                        .foregroundColor(Color(self.style.color.customBackground))
+                }
+            }
+        }.buttonStyle(NoHighlightStyle()).scaledToFit()
     }
 }
+
+#if DEBUG
+struct CheckmarkButton_Previews: PreviewProvider {
+    static var previews: some View {
+        CheckmarkButton(isChecked: false, action: {
+            print("test")
+            
+        })
+    }
+}
+#endif

@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2019, Apple Inc. All rights reserved.
+ Copyright (c) 2020, Apple Inc. All rights reserved.
  
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
@@ -27,10 +27,35 @@
  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#if !os(watchOS)
 
-import Foundation
+import SwiftUI
 
-public typealias OCKChecklistTaskController = OCKTaskController
+/// A button with an icon and title label.
+///
+///     +--------------------------+
+///     | [Title]           [Icon] |
+///     +--------------------------+
+///
 
+public struct ChecklistItemButton: View {
+    @Environment(\.careKitStyle) private var style
+    @State var title: String
+    public var body: some View {
+        HStack {
+            Text(title)
+                .font(.subheadline)
+                .fontWeight(.regular)
+            Spacer()
+            CheckmarkButton(isChecked: false, action: nil)
+                .frame(width: style.dimension.buttonHeight3, height: style.dimension.buttonHeight3, alignment: .center)
+        }
+    }
+}
+
+#if DEBUG
+struct ChecklistItemButton_Previews: PreviewProvider {
+    static var previews: some View {
+        ChecklistItemButton(title: "Breakfast")
+    }
+}
 #endif

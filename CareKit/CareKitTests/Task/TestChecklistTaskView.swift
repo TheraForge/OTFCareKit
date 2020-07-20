@@ -1,3 +1,4 @@
+//
 /*
  Copyright (c) 2020, Apple Inc. All rights reserved.
  
@@ -28,28 +29,35 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import CareKit
+import CareKitStore
+import CareKitUI
 import Foundation
 import SwiftUI
+import XCTest
 
-extension View {
+@available(iOS 14.0, watchOS 7.0, *)
+class TestChecklistTaskView: XCTestCase {
 
-    /// Conditionally apply modifiers to a view.
-    func `if`<TrueContent: View>(_ condition: Bool, trueContent: (Self) -> TrueContent) -> some View {
-        condition ?
-            ViewBuilder.buildEither(first: trueContent(self)) :
-            ViewBuilder.buildEither(second: self)
+    let controller: OCKChecklistTaskController = {
+        let store = OCKStore(name: "carekit-store", type: .inMemory)
+        return .init(storeManager: .init(wrapping: store))
+    }()
+
+    let eventQuery = OCKEventQuery(for: Date())
+    let task = OCKTask(id: "", title: "", carePlanUUID: nil, schedule: .dailyAtTime(hour: 1, minutes: 0, start: Date(), end: nil, text: nil))
+    let staticView = CareKitUI.ChecklistTaskView(title: Text(""), isComplete: false)
+
+    func testDefaultContentInitializers() {
+        _ = CareKit.ChecklistTaskView(task: task, eventQuery: eventQuery, storeManager: controller.storeManager)
+        _ = CareKit.ChecklistTaskView(taskID: "", eventQuery: eventQuery, storeManager: controller.storeManager)
+        _ = CareKit.ChecklistTaskView(controller: controller)
     }
 
-    /// Opposite effect of applying a `mask`. This will use the alpha channel of the mask to cut a shape out of the view.
-    func inverseMask<Mask: View>(_ mask: Mask) -> some View {
-        self.mask(mask
-            .foregroundColor(.black)
-            .background(Color.white)
-            .compositingGroup()
-            .luminanceToAlpha())
-    }
-    
-    func scaled(size: CGFloat) -> some View {
-        return self.modifier(ScaledFontModifier(size: size))
+    func testCustomContentInitializers() {
+        _ = CareKit.ChecklistTaskView(task: task, eventQuery: eventQuery, storeManager: controller.storeManager) { _ in self.staticView }
+        _ = CareKit.ChecklistTaskView(taskID: "", eventQuery: eventQuery, storeManager: controller.storeManager) { _ in self.staticView }
+        _ = CareKit.ChecklistTaskView(controller: controller) { _ in self.staticView }
     }
 }
+
