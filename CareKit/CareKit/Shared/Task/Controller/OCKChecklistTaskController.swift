@@ -58,6 +58,6 @@ open class OCKChecklistTaskController: OCKTaskController {
             return ChecklistTaskScheduleViewModel(title: events.scheduleEvent.element.text ?? OCKScheduleUtility.timeLabel(for: events), isComplete: events.outcome != nil, action: toggleActionForEvent(atIndexPath: .init(row: index, section: 0), errorHandler: errorHandler))
         }
         
-        return .init(title: taskEvents.firstEventTitle, detail: OCKScheduleUtility.scheduleLabel(for: taskEvents.first!.first) ?? "", instructions: taskEvents.firstTaskInstructions, action: toggleActionForFirstEvent(errorHandler: errorHandler), isComplete: taskEvents.isFirstEventComplete, schedule: schedules)
+        return .init(title: taskEvents.firstEventTitle, detail: OCKScheduleUtility.scheduleLabel(for: taskEvents.first!) ?? "", instructions: taskEvents.firstTaskInstructions, action: toggleActionForFirstEvent(errorHandler: errorHandler), isComplete: taskEvents.isFirstEventComplete, schedule: schedules)
     }
 }

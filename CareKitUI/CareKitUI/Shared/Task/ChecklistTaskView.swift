@@ -119,15 +119,15 @@ public extension ChecklistTaskView where List == _ChecklistItemViewList {
         })
     }
     
-    func updateItem(at index: Int,withTitle title: String) {
+    func updateItem(at index: Int, withTitle title: String) {
         list.updateItem(at: index, withTitle: title)
     }
 
-    func insertItem(withTitle title: String,isComplete complete: Bool,andAction action: @escaping () -> Void, at index: Int) {
+    func insertItem(withTitle title: String, isComplete complete: Bool,andAction action: @escaping () -> Void, at index: Int) {
         list.insertItem(withTitle: title, isComplete: complete, andAction: action, at: index)
     }
 
-    func addItem(withTitle title: String,isComplete complete: Bool,andAction action: @escaping () -> Void) {
+    func addItem(withTitle title: String, isComplete complete: Bool, andAction action: @escaping () -> Void) {
         list.addItem(withTitle: title, isComplete: complete, andAction: action)
     }
 
@@ -207,35 +207,35 @@ public struct _ChecklistItemViewDisclosure: View {
 /// The default list used by `ChecklistItemView`
 public struct _ChecklistItemViewList: View {
     @Environment(\.careKitStyle) private var style
-    @ObservedObject fileprivate var viewModel = ChecklistViewModel()
+    @ObservedObject fileprivate var dataSource = ChecklistDataSource()
     
     public var body: some View {
         VStack(alignment: .leading, spacing: style.dimension.directionalInsets1.top) {
-            ForEach(viewModel.items) { item in
+            ForEach(dataSource.items) { item in
                 ChecklistItemButton(title: item.title, isComplete: item.isComplete, action: item.action)
                 Divider()
             }
         }
     }
     
-    public func updateItem(at index: Int,withTitle title: String) {
-        viewModel.updateItem(at: index, withTitle: title)
+    public func updateItem(at index: Int, withTitle title: String) {
+        dataSource.updateItem(at: index, withTitle: title)
     }
     
-    public func insertItem(withTitle title: String,isComplete complete: Bool,andAction action: @escaping () -> Void, at index: Int) {
-        viewModel.insertItem(withTitle: title, isComplete: complete, andAction: action, at: index)
+    public func insertItem(withTitle title: String, isComplete complete: Bool, andAction action: @escaping () -> Void, at index: Int) {
+        dataSource.insertItem(withTitle: title, isComplete: complete, andAction: action, at: index)
     }
     
-    public func addItem(withTitle title: String,isComplete complete: Bool,andAction action: @escaping () -> Void) {
-        viewModel.addItem(withTitle: title, isComplete: complete, andAction: action)
+    public func addItem(withTitle title: String, isComplete complete: Bool, andAction action: @escaping () -> Void) {
+        dataSource.addItem(withTitle: title, isComplete: complete, andAction: action)
     }
     
     public func removeItem(at index: Int) {
-        viewModel.removeItem(at: index)
+        dataSource.removeItem(at: index)
     }
     
     public func clearItems() {
-        viewModel.clearItems()
+        dataSource.clearItems()
     }
 }
 
@@ -246,7 +246,7 @@ internal struct ChecklistItem: Identifiable {
     var action: () -> Void
 }
 
-internal class ChecklistViewModel: ObservableObject {
+internal class ChecklistDataSource: ObservableObject {
     @Published var items: [ChecklistItem]
     
     init() {
