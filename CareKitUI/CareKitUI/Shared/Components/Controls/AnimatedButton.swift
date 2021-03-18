@@ -28,28 +28,19 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import Foundation
 import SwiftUI
 
-extension View {
-
-    /// Conditionally apply modifiers to a view.
-    func `if`<TrueContent: View>(_ condition: Bool, trueContent: (Self) -> TrueContent) -> some View {
-        condition ?
-            ViewBuilder.buildEither(first: trueContent(self)) :
-            ViewBuilder.buildEither(second: self)
-    }
-
-    /// Opposite effect of applying a `mask`. This will use the alpha channel of the mask to cut a shape out of the view.
-    func inverseMask<Mask: View>(_ mask: Mask) -> some View {
-        self.mask(mask
-            .foregroundColor(.black)
-            .background(Color.white)
-            .compositingGroup()
-            .luminanceToAlpha())
-    }
+public struct AnimatedButton: View {
     
-    func scaled(size: CGFloat) -> some View {
-        return self.modifier(ScaledFontModifier(size: size))
+    public var body: some View {
+        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
+
+#if DEBUG
+struct AnimatedButton_Previews: PreviewProvider {
+    static var previews: some View {
+        AnimatedButton()
+    }
+}
+#endif

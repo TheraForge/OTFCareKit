@@ -124,6 +124,12 @@
 		64E1BD4E2309FCF200DFFE52 /* OCKResponsiveLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1BD4D2309FCF200DFFE52 /* OCKResponsiveLayout.swift */; };
 		64EEC2382318253B00B1012F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64EEC2362318253B00B1012F /* Localizable.strings */; };
 		64EEC23B231825DD00B1012F /* OCKLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EEC23A231825DD00B1012F /* OCKLocalization.swift */; };
+		B036D33924C3700400043E7C /* ChecklistTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B036D33824C3700400043E7C /* ChecklistTaskView.swift */; };
+		B036D33A24C3700400043E7C /* ChecklistTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B036D33824C3700400043E7C /* ChecklistTaskView.swift */; };
+		B036D33F24C3702C00043E7C /* ChecklistItemButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B036D33C24C3702C00043E7C /* ChecklistItemButton.swift */; };
+		B036D34024C3702C00043E7C /* ChecklistItemButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B036D33C24C3702C00043E7C /* ChecklistItemButton.swift */; };
+		B036D34324C37DC100043E7C /* FontModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B036D34224C37DC100043E7C /* FontModifiers.swift */; };
+		B036D34424C37DC100043E7C /* FontModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B036D34224C37DC100043E7C /* FontModifiers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -239,6 +245,9 @@
 		64E1BD4D2309FCF200DFFE52 /* OCKResponsiveLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OCKResponsiveLayout.swift; sourceTree = "<group>"; };
 		64EEC2372318253B00B1012F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		64EEC23A231825DD00B1012F /* OCKLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCKLocalization.swift; sourceTree = "<group>"; };
+		B036D33824C3700400043E7C /* ChecklistTaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistTaskView.swift; sourceTree = "<group>"; };
+		B036D33C24C3702C00043E7C /* ChecklistItemButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistItemButton.swift; sourceTree = "<group>"; };
+		B036D34224C37DC100043E7C /* FontModifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontModifiers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,6 +329,7 @@
 			children = (
 				51B225A123EDDCFC00A2D11F /* SimpleTaskView.swift */,
 				51B225A223EDDCFC00A2D11F /* InstructionsTaskView.swift */,
+				B036D33824C3700400043E7C /* ChecklistTaskView.swift */,
 			);
 			path = Task;
 			sourceTree = "<group>";
@@ -327,6 +337,7 @@
 		510466EF24A278EF00D0FD53 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B036D34124C37DC100043E7C /* Modifiers */,
 				516A1C4E244FA7E500BBF2D3 /* View+Extension.swift */,
 				51EFC75423FCAE6000536266 /* UIColor+Extension.swift */,
 				5103C55122F37B44007A7403 /* Number+Extensions.swift */,
@@ -378,6 +389,7 @@
 				51B2259F23EDDCFC00A2D11F /* HeaderView.swift */,
 				51173F3D243FE022004CB150 /* RectangularCompletionView.swift */,
 				51173F3B243FE007004CB150 /* CircularCompletionView.swift */,
+				B036D33C24C3702C00043E7C /* ChecklistItemButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -655,6 +667,14 @@
 			path = Localization;
 			sourceTree = "<group>";
 		};
+		B036D34124C37DC100043E7C /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				B036D34224C37DC100043E7C /* FontModifiers.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -880,6 +900,7 @@
 				518F9DA722961BF6009CAA48 /* OCKCompletionRingView.swift in Sources */,
 				518F9D9122961BF5009CAA48 /* OCKLabeledButton.swift in Sources */,
 				518F9DB222961BF6009CAA48 /* OCKDimensionStyler.swift in Sources */,
+				B036D33924C3700400043E7C /* ChecklistTaskView.swift in Sources */,
 				51178E1523AAAB2F0068BAB1 /* OCKCompletionState.swift in Sources */,
 				518F9D9022961BF5009CAA48 /* OCKInstructionsTaskView.swift in Sources */,
 				518F9DA622961BF6009CAA48 /* OCKGraphable.swift in Sources */,
@@ -887,6 +908,7 @@
 				518F9DB022961BF6009CAA48 /* OCKAnimationStyler.swift in Sources */,
 				517309A524AA6D7E00A35C85 /* OCKStyler+Extension.swift in Sources */,
 				03181064236A158E006D4870 /* OCKCappedSizeLabel.swift in Sources */,
+				B036D33F24C3702C00043E7C /* ChecklistItemButton.swift in Sources */,
 				518F9DB422961BF6009CAA48 /* OCKHeaderView.swift in Sources */,
 				518F9D9222961BF5009CAA48 /* OCKSelfSizingCollectionView.swift in Sources */,
 				51B225AD23EDDCFC00A2D11F /* SimpleTaskView.swift in Sources */,
@@ -896,6 +918,7 @@
 				5178FBDA22E253FC00794353 /* OCKChartDisplayable.swift in Sources */,
 				518F9D8F22961BF5009CAA48 /* OCKChecklistItemButton.swift in Sources */,
 				518F9DB722961BF6009CAA48 /* OCKSeparatorView.swift in Sources */,
+				B036D34324C37DC100043E7C /* FontModifiers.swift in Sources */,
 				516A02BC22F363D900D55AD7 /* OCKView.swift in Sources */,
 				518F9DB122961BF6009CAA48 /* OCKAppearanceStyler.swift in Sources */,
 				518F9DA222961BF6009CAA48 /* OCKBarPlotView.swift in Sources */,
@@ -912,9 +935,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				51F9F13023A9B9F80087C900 /* OCKColorStyler.swift in Sources */,
+				B036D34424C37DC100043E7C /* FontModifiers.swift in Sources */,
+				B036D34024C3702C00043E7C /* ChecklistItemButton.swift in Sources */,
 				51E2142A2444F1580063A121 /* CircularCompletionView.swift in Sources */,
 				517309A624AA6D7E00A35C85 /* OCKStyler+Extension.swift in Sources */,
 				51F9F16823A9BEC90087C900 /* OCKLocalization.swift in Sources */,
+				B036D33A24C3700400043E7C /* ChecklistTaskView.swift in Sources */,
 				516A1C50244FA7E900BBF2D3 /* View+Extension.swift in Sources */,
 				51F9F13323A9B9F80087C900 /* OCKDimensionStyler.swift in Sources */,
 				516A1C46244F703000BBF2D3 /* Number+Extensions.swift in Sources */,

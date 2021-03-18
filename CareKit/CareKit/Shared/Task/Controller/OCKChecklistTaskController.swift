@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2020, Apple Inc. All rights reserved.
+ Copyright (c) 2019, Apple Inc. All rights reserved.
  
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
@@ -28,28 +28,36 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import Combine
 import Foundation
-import SwiftUI
 
-extension View {
-
-    /// Conditionally apply modifiers to a view.
-    func `if`<TrueContent: View>(_ condition: Bool, trueContent: (Self) -> TrueContent) -> some View {
-        condition ?
-            ViewBuilder.buildEither(first: trueContent(self)) :
-            ViewBuilder.buildEither(second: self)
-    }
-
-    /// Opposite effect of applying a `mask`. This will use the alpha channel of the mask to cut a shape out of the view.
-    func inverseMask<Mask: View>(_ mask: Mask) -> some View {
-        self.mask(mask
-            .foregroundColor(.black)
-            .background(Color.white)
-            .compositingGroup()
-            .luminanceToAlpha())
+open class OCKChecklistTaskController: OCKTaskController {
+    
+    /// Data used to create a `CareKitUI.ChecklistTaskView`.
+    @Published public private(set) var viewModel: ChecklistTaskViewModel? {
+        willSet { objectWillChange.send() }
     }
     
-    func scaled(size: CGFloat) -> some View {
-        return self.modifier(ScaledFontModifier(size: size))
+    private var cancellable: AnyCancellable?
+
+    public required init(storeManager: OCKSynchronizedStoreManager) {
+        super.init(storeManager: storeManager)
+        cancellable = $taskEvents.sink { taskEvents in
+            self.viewModel = self.makeViewModel(from: taskEvents)
+        }
+    }
+
+    private func makeViewModel(from taskEvents: OCKTaskEvents) -> ChecklistTaskViewModel? {
+        guard !taskEvents.isEmpty else { return nil }
+
+        let errorHandler: (Error) -> Void = { [weak self] error in
+            self?.error = error
+        }
+
+        let schedules = taskEvents.first?.enumerated().map { (index, events) -> ChecklistTaskScheduleViewModel in
+            return ChecklistTaskScheduleViewModel(title: events.scheduleEvent.element.text ?? OCKScheduleUtility.timeLabel(for: events), isComplete: events.outcome != nil, action: toggleActionForEvent(atIndexPath: .init(row: index, section: 0), errorHandler: errorHandler))
+        }
+        
+        return .init(title: taskEvents.firstEventTitle, detail: OCKScheduleUtility.scheduleLabel(for: taskEvents.first!) ?? "", instructions: taskEvents.firstTaskInstructions, action: toggleActionForFirstEvent(errorHandler: errorHandler), isComplete: taskEvents.isFirstEventComplete, schedule: schedules)
     }
 }
