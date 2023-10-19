@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '13.0'
   s.watchos.deployment_target = '6.0'
   s.swift_versions = '5.0'
-  s.source                = { :git => 'https://github.com/HippocratesTech/OTFCareKit.git', :branch => 'main' }
+  s.source                = { :git => 'https://github.com/tf-pre-release/OTFCareKit.git', :branch => 'main' }
   s.exclude_files         = [ 'OTFCareKit/OTFCareKit/**/*.plist', 'OCKCatalog', 'OCKSample', 'DerivedData' ]
   s.xcconfig              = { 'LIBRARY_SEARCH_PATHS' => "$(SRCROOT)/Pods/**" }
   s.requires_arc          = true
