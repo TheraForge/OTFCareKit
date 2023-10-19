@@ -41,4 +41,28 @@ class TestPatient: XCTestCase {
         patient.birthday = Calendar.current.date(byAdding: .year, value: -50, to: Date())
         XCTAssert(patient.age == 50)
     }
+    
+    func testPatientAttachments() {
+        var patient = OCKPatient(id: "A", givenName: "Amy", familyName: "Frost")
+        
+        // swiftlint:disable:next line_length
+        let jsonString = "{\"profile\":{\"content_type\":\"image/png\",\"revpos\":1,\"encrypted_file_key\":\"\",\"length\":232072,\"stub\":true,\"location\":\"https://storagebox-prod.s3.eu-central-1.amazonaws.com/theraforge-storagebox-pod1/SS9sfzWq4aWVIk0XdX4He3c2Fi9XPdcIBL0fPil7qd5t2CsWleIVvxs0tQpYTk6BeYM8zLmPCPCGZjfQ2SEt2hOFnDIv0TL0HnzT0tcp2332hgQ9BmlVaeOLWt8UrfpkJr3hf6iPngpAWaeV5Eiuljry7SxdDEhHIII6OMjSkMdykenx9fIok54HLQ8gt9pOYiyvN2gL/88680df1d8eb2c334f379d45abcb08e6/profile/aba868ef98b621a21e6f1af8c773142f?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIASPDA45JLQPHFDM7D%2F20230131%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20230131T142703Z&X-Amz-Expires=3600&X-Amz-Signature=ac66ed6e615e10cf3be8b489eecef088b0b52b2187e890f84905df1b99612667&X-Amz-SignedHeaders=host\",\"key\":\"theraforge-storagebox-pod1/SS9sfzWq4aWVIk0XdX4He3c2Fi9XPdcIBL0fPil7qd5t2CsWleIVvxs0tQpYTk6BeYM8zLmPCPCGZjfQ2SEt2hOFnDIv0TL0HnzT0tcp2332hgQ9BmlVaeOLWt8UrfpkJr3hf6iPngpAWaeV5Eiuljry7SxdDEhHIII6OMjSkMdykenx9fIok54HLQ8gt9pOYiyvN2gL/88680df1d8eb2c334f379d45abcb08e6/profile/aba868ef98b621a21e6f1af8c773142f\",\"owner\":\"88680df1d8eb2c334f379d45abcb08e6\"}}"
+        patient.userInfo = ["attachments": jsonString]
+        
+        let attachmets = patient.attachments
+        
+        XCTAssertNotNil(attachmets)
+    }
+    
+    func testPatientAppSetting() {
+        var patient = OCKPatient(id: "A", givenName: "Amy", familyName: "Frost")
+        
+        // swiftlint:disable:next line_length
+        let jsonString = "{\"playLists\": [{\"uuid\": \"7563537481234238423442\"},{\"uuid\": \"3481237481234238978234\"}]}"
+        patient.userInfo = ["appSettings": jsonString]
+        
+        let appSettings = patient.appSettings
+        
+        XCTAssertNotNil(appSettings)
+    }
 }
