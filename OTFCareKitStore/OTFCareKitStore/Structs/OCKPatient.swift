@@ -31,6 +31,83 @@
 import CoreData
 import Foundation
 
+public struct OCKUserInfoKeys {
+    static let attachments = "attachments"
+    static let appSettings = "appSettings"
+}
+
+public struct OCKPatientAttachments: Codable {
+    public let Profile: OCKAttachment?
+    public let ConsentForm: OCKAttachment?
+    
+    public struct OCKAttachment: Codable {
+        public let contentType: String
+        public let revpos: String
+        public let attrev: Int
+        public let hashFileKey: String
+        public let encryptedFileKey: String
+        public let length: Int
+        public let stub: Bool
+        public let location: String
+        public let fileName: String
+        public let owner: String
+        public let attachmentID: String
+        
+        
+        
+        // swiftlint:disable:next nesting
+        public enum CodingKeys: String, CodingKey {
+            case contentType = "contentType"
+            case revpos
+            case encryptedFileKey
+            case length
+            case stub
+            case location
+            case hashFileKey
+            case owner
+            case fileName
+            case attrev
+            case attachmentID
+        }
+        
+        public init(contentType: String,
+                    revpos: String,
+                    hashFileKey: String,
+                    encryptedFileKey: String,
+                    location: String,
+                    fileName: String,
+                    owner: String,
+                    attrev: Int,
+                    length: Int,
+                    stub: Bool,
+                    attachmentID: String) {
+            self.contentType = contentType
+            self.revpos = revpos
+            self.hashFileKey = hashFileKey
+            self.encryptedFileKey = encryptedFileKey
+            self.location = location
+            self.fileName = fileName
+            self.owner = owner
+            self.attrev = attrev
+            self.length = length
+            self.stub = stub
+            self.attachmentID = attachmentID
+        }
+    }
+}
+
+public struct OCKPatientAppSettings: Codable {
+    public let playLists: [PlayLists]
+    
+    public struct PlayLists: Codable {
+        public let uuid: String
+        
+        public init(uuid: String) {
+            self.uuid = uuid
+        }
+    }
+}
+
 /// Represents a patient
 public struct OCKPatient: Codable, Equatable, Identifiable, OCKAnyPatient {
 
@@ -108,5 +185,24 @@ extension OCKPatient: OCKVersionedObjectCompatible {
     
     func insert(context: NSManagedObjectContext) -> OCKCDVersionedObject {
         OCKCDPatient(patient: self, context: context)
+    }
+}
+
+// MARK: - User information from UserInfo Object
+public extension OCKPatient {
+    var attachments: OCKPatientAttachments? {
+        guard let attachments = userInfo?[OCKUserInfoKeys.attachments],
+              let attachmentsData = attachments.data(using: .utf8) else { return nil }
+        let docoder = JSONDecoder()
+        let attachmentsObject = try? docoder.decode(OCKPatientAttachments.self, from: attachmentsData)
+        return attachmentsObject
+    }
+    
+    var appSettings: OCKPatientAppSettings? {
+        guard let appSettings = userInfo?[OCKUserInfoKeys.appSettings],
+              let appSettingsData = appSettings.data(using: .utf8) else { return nil }
+        let docoder = JSONDecoder()
+        let appSettingsObject = try? docoder.decode(OCKPatientAppSettings.self, from: appSettingsData)
+        return appSettingsObject
     }
 }

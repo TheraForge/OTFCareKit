@@ -41,4 +41,28 @@ class TestPatient: XCTestCase {
         patient.birthday = Calendar.current.date(byAdding: .year, value: -50, to: Date())
         XCTAssert(patient.age == 50)
     }
+    
+    func testPatientAttachments() {
+        var patient = OCKPatient(id: "A", givenName: "Amy", familyName: "Frost")
+        
+        // swiftlint:disable:next line_length
+        let jsonString = "{\"profile\":{\"content_type\":\"image/png\",\"revpos\":1,\"encrypted_file_key\":\"\",\"length\":232072,\"stub\":true,\"location\":\"<location-of-file-on-server>\",\"key\":\"<file-key>\",\"owner\":\"88680df1d8eb2c334f379d45abcb08e6\"}}"
+        patient.userInfo = ["attachments": jsonString]
+        
+        let attachmets = patient.attachments
+        
+        XCTAssertNotNil(attachmets)
+    }
+    
+    func testPatientAppSetting() {
+        var patient = OCKPatient(id: "A", givenName: "Amy", familyName: "Frost")
+        
+        // swiftlint:disable:next line_length
+        let jsonString = "{\"playLists\": [{\"uuid\": \"7563537481234238423442\"},{\"uuid\": \"3481237481234238978234\"}]}"
+        patient.userInfo = ["appSettings": jsonString]
+        
+        let appSettings = patient.appSettings
+        
+        XCTAssertNotNil(appSettings)
+    }
 }

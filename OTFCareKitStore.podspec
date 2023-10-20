@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '13.0'
   s.watchos.deployment_target = '6.0'
   s.swift_versions = '5.0'
-  s.source                = { :git => 'https://github.com/HippocratesTech/otfcarekit.git', :submodules => true, :branch => 'main' }
+  s.source                = { :git => 'https://github.com/TheraForge/otfcarekit.git', :submodules => true, :branch => 'main' }
   
   s.default_subspec = 'Care'
 

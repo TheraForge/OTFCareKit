@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '13.0'
   s.watchos.deployment_target = '6.0'
   s.swift_versions = '5.0'
-  s.source                = { :git => 'https://github.com/HippocratesTech/otfcarekit.git', :branch => 'main' }
+  s.source                = { :git => 'https://github.com/TheraForge/otfcarekit.git', :branch => 'main' }
   s.source_files          = 'OTFCareKitUI/OTFCareKitUI/**/*.{h,m,swift}'
   s.exclude_files         = 'OTFCareKitUI/OTFCareKitUI/**/*.plist', 'OTFCareKitUI/OTFCareKitUITests/'
   s.frameworks            = 'UIKit', 'SwiftUI'
