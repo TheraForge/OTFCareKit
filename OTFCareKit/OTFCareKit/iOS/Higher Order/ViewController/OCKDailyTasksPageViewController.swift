@@ -1,21 +1,21 @@
 /*
  Copyright (c) 2019, Apple Inc. All rights reserved.
- 
+
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
- 
+
  1.  Redistributions of source code must retain the above copyright notice, this
  list of conditions and the following disclaimer.
- 
+
  2.  Redistributions in binary form must reproduce the above copyright notice,
  this list of conditions and the following disclaimer in the documentation and/or
  other materials provided with the distribution.
- 
+
  3. Neither the name of the copyright holder(s) nor the names of any contributors
  may be used to endorse or promote products derived from this software without
  specific prior written permission. No license is granted to the trademarks of
  the copyright holders even if such marks are included in this software.
- 
+
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -143,19 +143,19 @@ open class OCKDailyTasksPageViewController: OCKDailyPageViewController {
             return NumericProgressTaskView(controller: controller)
                 .hosted()
 
-        // Show the button log if the task does not impact adherence
+            // Show the button log if the task does not impact adherence
         } else if !task.impactsAdherence {
             let taskViewController = OCKButtonLogTaskViewController(controller: .init(storeManager: self.storeManager), viewSynchronizer: .init())
             taskViewController.controller.setViewModelAndObserve(events: events, query: eventQuery)
             return taskViewController
 
-        // Show the simple if there is only one event. Visually this is the best style for a single event.
+            // Show the simple if there is only one event. Visually this is the best style for a single event.
         } else if events.count == 1 {
             let taskViewController = OCKSimpleTaskViewController(controller: .init(storeManager: self.storeManager), viewSynchronizer: .init())
             taskViewController.controller.setViewModelAndObserve(events: events, query: eventQuery)
             return taskViewController
 
-        // Else default to the grid
+            // Else default to the grid
         } else {
             let taskViewController = OCKGridTaskViewController(controller: .init(storeManager: self.storeManager), viewSynchronizer: .init())
             taskViewController.controller.setViewModelAndObserve(events: events, query: eventQuery)
@@ -167,13 +167,13 @@ open class OCKDailyTasksPageViewController: OCKDailyPageViewController {
             taskViewController.controller.setViewModelAndObserve(events: events, query: eventQuery)
             return taskViewController
 
-        // Show the simple if there is only one event. Visually this is the best style for a single event.
+            // Show the simple if there is only one event. Visually this is the best style for a single event.
         } else if events.count == 1 {
             let taskViewController = OCKSimpleTaskViewController(controller: .init(storeManager: self.storeManager), viewSynchronizer: .init())
             taskViewController.controller.setViewModelAndObserve(events: events, query: eventQuery)
             return taskViewController
 
-        // Else default to the grid
+            // Else default to the grid
         } else {
             let taskViewController = OCKGridTaskViewController(controller: .init(storeManager: self.storeManager), viewSynchronizer: .init())
             taskViewController.controller.setViewModelAndObserve(events: events, query: eventQuery)

@@ -1,21 +1,21 @@
 /*
  Copyright (c) 2021, Apple Inc. All rights reserved.
- 
+
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
- 
+
  1.  Redistributions of source code must retain the above copyright notice, this
  list of conditions and the following disclaimer.
- 
+
  2.  Redistributions in binary form must reproduce the above copyright notice,
  this list of conditions and the following disclaimer in the documentation and/or
  other materials provided with the distribution.
- 
+
  3. Neither the name of the copyright holder(s) nor the names of any contributors
  may be used to endorse or promote products derived from this software without
  specific prior written permission. No license is granted to the trademarks of
  the copyright holders even if such marks are included in this software.
- 
+
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -51,7 +51,6 @@ class TestStoreCRDTMergeProperties: XCTestCase {
         XCTAssert(patients.count == 1)
     }
 
-    // swiftlint:disable identifier_name
     func testMergeIsCommutative() throws {
         let store = OCKStore(name: "commutative", type: .inMemory)
         let revisions = makeRevisions(count: 10).shuffled()
@@ -61,8 +60,8 @@ class TestStoreCRDTMergeProperties: XCTestCase {
         }
 
         let patients = try store.fetchPatientsAndWait()
-        for i in 0..<10 {
-            XCTAssert(patients[i].previousVersionUUIDs.isEmpty == (i == 9))
+        for num in 0..<10 {
+            XCTAssert(patients[i].previousVersionUUIDs.isEmpty == (num == 9))
         }
     }
 
@@ -93,21 +92,20 @@ class TestStoreCRDTMergeProperties: XCTestCase {
         XCTAssert(fetchedA.map(\.nextVersionUUIDs) == fetchedB.map(\.nextVersionUUIDs))
     }
 
-    // swiftlint:disable identifier_name
     private func makeRevisions(count: Int) -> [OCKRevisionRecord] {
 
         var revisions = [OCKRevisionRecord]()
         let uuids = Array(0..<count).map { _ in UUID() }
 
-        for i in 0..<count {
+        for num in 0..<count {
 
-            var patient = OCKPatient(id: "a", givenName: "Version", familyName: "\(i)")
+            var patient = OCKPatient(id: "a", givenName: "Version", familyName: "\(num)")
             patient.uuid = uuids[i]
             patient.createdDate = Date()
             patient.updatedDate = Date()
             patient.effectiveDate = Date()
-            patient.previousVersionUUIDs = i > 0 ? [uuids[i - 1]] : []
-            patient.nextVersionUUIDs = i < count - 1 ? [uuids[i + 1]] : []
+            patient.previousVersionUUIDs = num > 0 ? [uuids[num - 1]] : []
+            patient.nextVersionUUIDs = num < count - 1 ? [uuids[num + 1]] : []
 
             let revision = OCKRevisionRecord(
                 entities: [.patient(patient)],

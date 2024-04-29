@@ -105,8 +105,8 @@ open class OCKSimpleContactView: OCKView, OCKContactDisplayable {
         [contentView, backgroundButton, contentStackView].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
         NSLayoutConstraint.activate(
             contentView.constraints(equalTo: self) +
-            backgroundButton.constraints(equalTo: contentView) +
-            contentStackView.constraints(equalTo: backgroundButton.layoutMarginsGuide))
+                backgroundButton.constraints(equalTo: contentView) +
+                contentStackView.constraints(equalTo: backgroundButton.layoutMarginsGuide))
     }
 
     override open func styleDidChange() {

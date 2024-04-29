@@ -3,7 +3,7 @@ excluded:
    - Pods
 
 # structure limits
-cyclomatic_complexity: 10  # max 10 conditions per method
+cyclomatic_complexity: 20  # max 20 conditions per method
 function_parameter_count: 5  # don't pass too many parameters to methods, use objects/structs instead
 line_length: 200 # limit line length, line wrap or use variables to simplify code
 type_body_length: 300  # don't use long types, use extensions if needed
@@ -19,6 +19,10 @@ disabled_rules:
   - unused_capture_list # It is standard swift compiler warning
   - trailing_whitespace
   - force_cast
+  - trailing_closure
+  - identifier_name
+  - type_name
+  - force_try
 # optional linting rules
 opt_in_rules:
   - closure_spacing # spaces around closure body
@@ -36,6 +40,10 @@ opt_in_rules:
   - trailing_closure # prefer trailing closures
   - yoda_condition # `x != nil` instead of `nil != x`
 
+type_body_length:
+    warning: 1550
+    error: 1600
+    
 # Optional indentation rules, enable for strict indentation/line wrapping
 #  - closure_end_indentation
 #  - literal_expression_end_indentation

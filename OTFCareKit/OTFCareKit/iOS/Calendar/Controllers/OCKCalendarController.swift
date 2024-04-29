@@ -65,7 +65,6 @@ open class OCKCalendarController: ObservableObject {
     }
 
     // MARK: - Methods
-    // swiftlint:disable trailing_closure
     /// Begin observing adherence in the calendar's date interval.
     ///
     /// - Parameters:

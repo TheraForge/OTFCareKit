@@ -51,7 +51,7 @@ extension OCKStore {
         transaction(
             inserts: patients, updates: [], deletes: [],
             preInsertValidate: self.validateNumberOfPatients) { result in
-            
+
             callbackQueue.async {
                 completion?(result.map(\.inserts))
             }
@@ -75,7 +75,7 @@ extension OCKStore {
             }
         }
     }
-    
+
     // MARK: Private
 
     private func buildSortDescriptors(from query: OCKPatientQuery) -> [NSSortDescriptor] {

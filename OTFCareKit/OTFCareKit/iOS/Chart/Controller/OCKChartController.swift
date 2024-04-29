@@ -119,8 +119,7 @@ open class OCKChartController: ObservableObject {
             completion?(.success(allDataSeries))
         }
     }
-    
-    // swiftlint:disable trailing_closure
+
     private func subscribeTo(event: OCKAnyEvent, configurations: [OCKDataSeriesConfiguration]) {
         storeManager
             .publisher(forEvent: event, categories: [.add, .update, .delete])

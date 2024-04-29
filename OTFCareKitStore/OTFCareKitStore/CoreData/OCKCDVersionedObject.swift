@@ -74,7 +74,7 @@ class OCKCDVersionedObject: OCKCDObject {
         notes = {
             guard let valueNotes = value.notes else { return nil }
             return Set(valueNotes.map {
-                        OCKCDNote(note: $0, context: context)
+                OCKCDNote(note: $0, context: context)
             })
         }()
     }

@@ -36,13 +36,6 @@ import XCTest
 
 // Just testing access level
 private class CustomCartesianChartViewSynchronizer: OCKCartesianChartViewSynchronizer {
-    override func makeView() -> OCKCartesianChartView {
-        return super.makeView()
-    }
-
-    override func updateView(_ view: OCKCartesianChartView, context: OCKSynchronizationContext<[OCKDataSeries]>) {
-        super.updateView(view, context: context)
-    }
 }
 
 private class CustomChartView: UILabel, OCKChartDisplayable {

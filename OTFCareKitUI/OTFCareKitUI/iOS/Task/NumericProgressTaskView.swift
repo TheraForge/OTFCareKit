@@ -243,18 +243,18 @@ struct NumericProgressTaskView_Previews: PreviewProvider {
                 ),
                 isComplete: false)
 
-                NumericProgressTaskView(
-                    title: Text("Exercise Minutes"),
-                    detail: Text("Anytime"),
-                    progress: Text("22"),
-                    goal: Text("30"),
-                    instructions: Text(
-                        """
+            NumericProgressTaskView(
+                title: Text("Exercise Minutes"),
+                detail: Text("Anytime"),
+                progress: Text("22"),
+                goal: Text("30"),
+                instructions: Text(
+                    """
                             Take time out of your day to get some exercise. Venture outside and turn play \
                             into high energy activity.
                         """
-                    ),
-                    isComplete: false)
+                ),
+                isComplete: false)
 
         }.padding()
     }

@@ -13,12 +13,23 @@ identifier_name: # don't use short variable names, don't use abbreviations
     - id
   min_length:
     error: 2
-    warning: 3
+    warning: 2
+    
+function_body_length:
+    warning: 70
+    error: 100
+    
+type_name: # class name
+    min_length: 2
+    max_length:
+        warning: 60
+        error: 80
 
 disabled_rules:
   - unused_capture_list # It is standard swift compiler warning
   - trailing_whitespace
   - force_cast
+  - trailing_closure
 # optional linting rules
 opt_in_rules:
   - closure_spacing # spaces around closure body

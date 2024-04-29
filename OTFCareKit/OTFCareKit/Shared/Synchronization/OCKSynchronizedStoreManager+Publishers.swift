@@ -1,21 +1,21 @@
 /*
  Copyright (c) 2019, Apple Inc. All rights reserved.
- 
+
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
- 
+
  1.  Redistributions of source code must retain the above copyright notice, this
  list of conditions and the following disclaimer.
- 
+
  2.  Redistributions in binary form must reproduce the above copyright notice,
  this list of conditions and the following disclaimer in the documentation and/or
  other materials provided with the distribution.
- 
+
  3. Neither the name of the copyright holder(s) nor the names of any contributors
  may be used to endorse or promote products derived from this software without
  specific prior written permission. No license is granted to the trademarks of
  the copyright holders even if such marks are included in this software.
- 
+
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -32,7 +32,6 @@ import OTFCareKitStore
 import Combine
 import Foundation
 
-// swiftlint:disable trailing_closure
 extension OCKSynchronizedStoreManager {
 
     // MARK: Patients
@@ -46,10 +45,10 @@ extension OCKSynchronizedStoreManager {
         })
 
         return AnyPublisher(notificationPublisher
-            .compactMap { $0 as? OCKPatientNotification }
-            .filter { $0.patient.id == patient.id && categories.contains($0.category) }
-            .map { $0.patient }
-            .prepend(presentValuePublisher))
+                                .compactMap { $0 as? OCKPatientNotification }
+                                .filter { $0.patient.id == patient.id && categories.contains($0.category) }
+                                .map { $0.patient }
+                                .prepend(presentValuePublisher))
     }
 
     // MARK: CarePlans
@@ -63,19 +62,19 @@ extension OCKSynchronizedStoreManager {
         }
 
         return AnyPublisher(notificationPublisher
-            .compactMap { $0 as? OCKCarePlanNotification }
-            .filter { $0.carePlan.id == plan.id && categories.contains($0.category) }
-            .map { $0.carePlan }
-            .prepend(presentValuePublisher))
+                                .compactMap { $0 as? OCKCarePlanNotification }
+                                .filter { $0.carePlan.id == plan.id && categories.contains($0.category) }
+                                .map { $0.carePlan }
+                                .prepend(presentValuePublisher))
     }
 
     // MARK: Contacts
 
     func contactsPublisher(categories: [OCKStoreNotificationCategory]) -> AnyPublisher<OCKAnyContact, Never> {
         return AnyPublisher(notificationPublisher
-            .compactMap { $0 as? OCKContactNotification }
-            .filter { categories.contains($0.category) }
-            .map { $0.contact })
+                                .compactMap { $0 as? OCKContactNotification }
+                                .filter { categories.contains($0.category) }
+                                .map { $0.contact })
     }
 
     func publisher(forContactID id: String,
@@ -122,9 +121,9 @@ extension OCKSynchronizedStoreManager {
     func publisher(forEventsBelongingToTask task: OCKAnyTask,
                    categories: [OCKStoreNotificationCategory]) -> AnyPublisher<OCKAnyEvent, Never> {
         return AnyPublisher(notificationPublisher
-            .compactMap { $0 as? OCKOutcomeNotification }
-            .filter { $0.outcome.belongs(to: task) && categories.contains($0.category) }
-            .map { self.makeEvent(task: task, outcome: $0.outcome, keepOutcome: $0.category != .delete) })
+                                .compactMap { $0 as? OCKOutcomeNotification }
+                                .filter { $0.outcome.belongs(to: task) && categories.contains($0.category) }
+                                .map { self.makeEvent(task: task, outcome: $0.outcome, keepOutcome: $0.category != .delete) })
     }
 
     func publisher(forEventsBelongingToTask task: OCKAnyTask, query: OCKEventQuery,
@@ -155,10 +154,10 @@ extension OCKSynchronizedStoreManager {
         })
 
         return AnyPublisher(notificationPublisher
-            .compactMap { $0 as? OCKOutcomeNotification }
-            .filter { self.outcomeMatchesEvent(outcome: $0.outcome, event: event) }
-            .map { self.makeEvent(task: event.task, outcome: $0.outcome, keepOutcome: $0.category != .delete) }
-            .prepend(presentValuePublisher))
+                                .compactMap { $0 as? OCKOutcomeNotification }
+                                .filter { self.outcomeMatchesEvent(outcome: $0.outcome, event: event) }
+                                .map { self.makeEvent(task: event.task, outcome: $0.outcome, keepOutcome: $0.category != .delete) }
+                                .prepend(presentValuePublisher))
     }
 
     private func outcomeMatchesEvent(outcome: OCKAnyOutcome, event: OCKAnyEvent) -> Bool {

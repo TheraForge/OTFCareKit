@@ -50,7 +50,7 @@ public struct OCKOutcome: Codable, Equatable, Identifiable, OCKAnyOutcome {
     public var uuid = UUID()
     public var nextVersionUUIDs: [UUID] = []
     public var previousVersionUUIDs: [UUID] = []
-    
+
     // MARK: OCKObjectCompatible
     public var createdDate: Date?
     public var updatedDate: Date?
@@ -93,7 +93,7 @@ extension OCKOutcome: OCKVersionedObjectCompatible {
     func entity() -> OCKEntity {
         .outcome(self)
     }
-    
+
     func insert(context: NSManagedObjectContext) -> OCKCDVersionedObject {
         OCKCDOutcome(outcome: self, context: context)
     }

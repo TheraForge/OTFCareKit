@@ -164,9 +164,9 @@ open class OCKGridTaskView: OCKView, OCKTaskDisplayable, UICollectionViewDelegat
         [contentView, headerStackView, headerView].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
         NSLayoutConstraint.activate(
             contentView.constraints(equalTo: self) +
-            headerStackView.constraints(equalTo: contentView) +
-            headerView.constraints(equalTo: headerButton.layoutMarginsGuide, directions: [.horizontal, .top]) +
-            headerView.constraints(equalTo: headerButton, directions: [.bottom]))
+                headerStackView.constraints(equalTo: contentView) +
+                headerView.constraints(equalTo: headerButton.layoutMarginsGuide, directions: [.horizontal, .top]) +
+                headerView.constraints(equalTo: headerButton, directions: [.bottom]))
     }
 
     private func makeLayout() -> UICollectionViewLayout {

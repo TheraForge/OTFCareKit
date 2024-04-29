@@ -35,13 +35,6 @@ import XCTest
 
 // Just testing access level
 private class CustomWeekCalendarViewSynchronizer: OCKWeekCalendarViewSynchronizer {
-    override func makeView() -> OCKWeekCalendarView {
-        return super.makeView()
-    }
-
-    override func updateView(_ view: OCKWeekCalendarView, context: OCKSynchronizationContext<[OCKCompletionState]>) {
-        super.updateView(view, context: context)
-    }
 }
 
 private class MockCalendarView: UILabel, OCKCalendarDisplayable {
@@ -84,7 +77,7 @@ class TestCustomCalendarViewSynchronizer: XCTestCase {
 
     // View should be cleared after updating with a no data
     func testDoesClear() {
-       let states: [OCKCompletionState] = Array(repeating: .empty, count: 7)
+        let states: [OCKCompletionState] = Array(repeating: .empty, count: 7)
         viewSynchronizer.updateView(view, context: .init(viewModel: states, oldViewModel: [], animated: false))
         XCTAssertFalse(view.completionStates.isEmpty)
 

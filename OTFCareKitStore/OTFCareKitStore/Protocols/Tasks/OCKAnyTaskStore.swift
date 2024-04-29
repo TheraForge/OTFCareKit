@@ -1,21 +1,21 @@
 /*
  Copyright (c) 2019, Apple Inc. All rights reserved.
- 
+
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
- 
+
  1.  Redistributions of source code must retain the above copyright notice, this
  list of conditions and the following disclaimer.
- 
+
  2.  Redistributions in binary form must reproduce the above copyright notice,
  this list of conditions and the following disclaimer in the documentation and/or
  other materials provided with the distribution.
- 
+
  3. Neither the name of the copyright holder(s) nor the names of any contributors
  may be used to endorse or promote products derived from this software without
  specific prior written permission. No license is granted to the trademarks of
  the copyright holders even if such marks are included in this software.
- 
+
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -121,7 +121,7 @@ public extension OCKAnyReadOnlyTaskStore {
         query.sortDescriptors = [.effectiveDate(ascending: false)]
         query.limit = 1
         fetchAnyTasks(query: query, callbackQueue: callbackQueue, completion:
-            chooseFirst(then: completion, replacementError: .fetchFailed(reason: "No task with matching ID")))
+                        chooseFirst(then: completion, replacementError: .fetchFailed(reason: "No task with matching ID")))
     }
 }
 
@@ -130,16 +130,16 @@ public extension OCKAnyReadOnlyTaskStore {
 public extension OCKAnyTaskStore {
     func addAnyTask(_ task: OCKAnyTask, callbackQueue: DispatchQueue = .main, completion: OCKResultClosure<OCKAnyTask>? = nil) {
         addAnyTasks([task], callbackQueue: callbackQueue, completion:
-            chooseFirst(then: completion, replacementError: .addFailed(reason: "Failed to add task")))
+                        chooseFirst(then: completion, replacementError: .addFailed(reason: "Failed to add task")))
     }
 
     func updateAnyTask(_ task: OCKAnyTask, callbackQueue: DispatchQueue = .main, completion: OCKResultClosure<OCKAnyTask>? = nil) {
         updateAnyTasks([task], callbackQueue: callbackQueue, completion:
-            chooseFirst(then: completion, replacementError: .updateFailed(reason: "Failed to update task")))
+                        chooseFirst(then: completion, replacementError: .updateFailed(reason: "Failed to update task")))
     }
 
     func deleteAnyTask(_ task: OCKAnyTask, callbackQueue: DispatchQueue = .main, completion: OCKResultClosure<OCKAnyTask>? = nil) {
         deleteAnyTasks([task], callbackQueue: callbackQueue, completion:
-            chooseFirst(then: completion, replacementError: .deleteFailed(reason: "Failed to delete task")))
+                        chooseFirst(then: completion, replacementError: .deleteFailed(reason: "Failed to delete task")))
     }
 }

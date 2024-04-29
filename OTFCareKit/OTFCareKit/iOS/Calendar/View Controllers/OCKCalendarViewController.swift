@@ -48,7 +48,7 @@ public protocol OCKCalendarViewControllerDelegate: AnyObject {
 
 /// A view controller that displays a calendar view and keep it synchronized with a store.
 open class OCKCalendarViewController<Controller: OCKCalendarController, ViewSynchronizer: OCKCalendarViewSynchronizerProtocol>:
-UIViewController, OCKCalendarViewDelegate {
+    UIViewController, OCKCalendarViewDelegate {
 
     // MARK: Properties
 
@@ -126,7 +126,6 @@ UIViewController, OCKCalendarViewDelegate {
     }
 
     // MARK: - Methods
-    // swiftlint:disable trailing_closure
     // Create a subscription that updates the view when the view model is updated.
     private func startObservingViewModel() {
         controller.$completionStates

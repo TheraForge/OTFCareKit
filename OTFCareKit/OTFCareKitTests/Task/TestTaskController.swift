@@ -34,7 +34,6 @@ import Combine
 import Foundation
 import XCTest
 
-// swiftlint:disable type_body_length
 class TestTaskController: XCTestCase {
 
     var store: OCKStore!
@@ -256,7 +255,7 @@ class TestTaskController: XCTestCase {
             XCTAssertEqual(controller.taskEvents.events.count, 3)
             didStartSendingNotification = true
             let updatedTask = doxylamineTask.updatedWithDailySchedule()
-            // swiftlint:disable force_try
+
             try! self.store.updateTaskAndWait(updatedTask)
             notificationSent.fulfill()
         }.store(in: &cancellables)
@@ -304,7 +303,7 @@ class TestTaskController: XCTestCase {
             guard count == 1 else { return }
             XCTAssertEqual(controller.taskEvents.events.count, 3)
             didStartSendingNotification = true
-            // swiftlint:disable force_try
+
             try! self.store.deleteTaskAndWait(doxylamineTask)
             notificationSent.fulfill()
         }.store(in: &cancellables)
@@ -353,7 +352,7 @@ class TestTaskController: XCTestCase {
             guard count == 1 else { return }
             XCTAssertTrue(controller.taskEvents.isEmpty)
             didStartSendingNotification = true
-            // swiftlint:disable force_try
+
             try! self.store.addTaskAndWait(doxylamineTask)
             notificationSent.fulfill()
         }.store(in: &cancellables)
@@ -466,7 +465,7 @@ class TestTaskController: XCTestCase {
             didStartSendingNotification = true
 
             // Send multiple task notifications
-            // swiftlint:disable force_try
+
             try! self.store.deleteTaskAndWait(doxylamine)
             try! self.store.deleteTaskAndWait(nauseau)
 

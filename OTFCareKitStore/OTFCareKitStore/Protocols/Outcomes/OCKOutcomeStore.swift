@@ -112,7 +112,7 @@ public extension OCKReadableOutcomeStore {
     func fetchOutcome(query: OCKOutcomeQuery, callbackQueue: DispatchQueue = .main,
                       completion: @escaping OCKResultClosure<Outcome>) {
         fetchOutcomes(query: query, callbackQueue: callbackQueue, completion:
-            chooseFirst(then: completion, replacementError: .fetchFailed(reason: "No matching outcome found")))
+                        chooseFirst(then: completion, replacementError: .fetchFailed(reason: "No matching outcome found")))
     }
 }
 
@@ -121,17 +121,17 @@ public extension OCKReadableOutcomeStore {
 public extension OCKOutcomeStore {
     func addOutcome(_ outcome: Outcome, callbackQueue: DispatchQueue = .main, completion: OCKResultClosure<Outcome>? = nil) {
         addOutcomes([outcome], callbackQueue: callbackQueue, completion:
-            chooseFirst(then: completion, replacementError: .addFailed(reason: "Failed to add outcome")))
+                        chooseFirst(then: completion, replacementError: .addFailed(reason: "Failed to add outcome")))
     }
 
     func updateOutcome(_ outcome: Outcome, callbackQueue: DispatchQueue = .main, completion: OCKResultClosure<Outcome>? = nil) {
         updateOutcomes([outcome], callbackQueue: callbackQueue, completion:
-            chooseFirst(then: completion, replacementError: .updateFailed(reason: "Failed to update outcome")))
+                        chooseFirst(then: completion, replacementError: .updateFailed(reason: "Failed to update outcome")))
     }
 
     func deleteOutcome(_ outcome: Outcome, callbackQueue: DispatchQueue = .main, completion: OCKResultClosure<Outcome>? = nil) {
         deleteOutcomes([outcome], callbackQueue: callbackQueue, completion:
-            chooseFirst(then: completion, replacementError: .deleteFailed(reason: "Failed to delete outcome")))
+                        chooseFirst(then: completion, replacementError: .deleteFailed(reason: "Failed to delete outcome")))
     }
 }
 

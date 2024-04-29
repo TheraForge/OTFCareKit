@@ -1,21 +1,21 @@
 /*
  Copyright (c) 2019, Apple Inc. All rights reserved.
- 
+
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
- 
+
  1.  Redistributions of source code must retain the above copyright notice, this
  list of conditions and the following disclaimer.
- 
+
  2.  Redistributions in binary form must reproduce the above copyright notice,
  this list of conditions and the following disclaimer in the documentation and/or
  other materials provided with the distribution.
- 
+
  3. Neither the name of the copyright holder(s) nor the names of any contributors
  may be used to endorse or promote products derived from this software without
  specific prior written permission. No license is granted to the trademarks of
  the copyright holders even if such marks are included in this software.
- 
+
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -31,7 +31,6 @@
 import Foundation
 
 extension OCKStoreCoordinator {
-    // swiftlint:disable trailing_closure
     open func fetchAnyCarePlans(query: OCKCarePlanQuery, callbackQueue: DispatchQueue = .main,
                                 completion: @escaping (Result<[OCKAnyCarePlan], OCKStoreError>) -> Void) {
         let readableStores = readOnlyPlanStores + planStores
@@ -49,7 +48,7 @@ extension OCKStoreCoordinator {
         } catch {
             callbackQueue.async {
                 completion?(.failure(.addFailed(
-                    reason: "Failed to find store accepting care plans. Error: \(error.localizedDescription)")))
+                                        reason: "Failed to find store accepting care plans. Error: \(error.localizedDescription)")))
             }
         }
     }
@@ -61,7 +60,7 @@ extension OCKStoreCoordinator {
         } catch {
             callbackQueue.async {
                 completion?(.failure(.updateFailed(
-                    reason: "Failed to find store accepting care plans. Error: \(error.localizedDescription)")))
+                                        reason: "Failed to find store accepting care plans. Error: \(error.localizedDescription)")))
             }
         }
     }
@@ -73,7 +72,7 @@ extension OCKStoreCoordinator {
         } catch {
             callbackQueue.async {
                 completion?(.failure(.deleteFailed(
-                    reason: "Failed to find store accepting care plans. Error: \(error.localizedDescription)")))
+                                        reason: "Failed to find store accepting care plans. Error: \(error.localizedDescription)")))
             }
         }
     }

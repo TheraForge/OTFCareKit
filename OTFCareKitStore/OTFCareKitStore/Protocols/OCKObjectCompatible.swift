@@ -98,7 +98,7 @@ protocol OCKVersionedObjectCompatible {
     static func entity() -> NSEntityDescription
 
     func entity() -> OCKEntity
-    
+
     func insert(context: NSManagedObjectContext) -> OCKCDVersionedObject
 }
 

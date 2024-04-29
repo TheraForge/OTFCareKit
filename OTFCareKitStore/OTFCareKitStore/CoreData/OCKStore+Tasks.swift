@@ -74,23 +74,23 @@ extension OCKStore {
         callbackQueue: DispatchQueue = .main,
         completion: ((Result<[OCKTask], OCKStoreError>) -> Void)? = nil) {
 
-            transaction(
-                inserts: [], updates: tasks, deletes: [],
-                preInsertValidate: {
-                    try self.confirmUpdateWillNotCauseDataLoss(tasks: tasks)
-                },
-                completion: { result in
-                    callbackQueue.async {
-                        completion?(result.map(\.updates))
-                    }
-                })
+        transaction(
+            inserts: [], updates: tasks, deletes: [],
+            preInsertValidate: {
+                try self.confirmUpdateWillNotCauseDataLoss(tasks: tasks)
+            },
+            completion: { result in
+                callbackQueue.async {
+                    completion?(result.map(\.updates))
+                }
+            })
     }
 
     public func deleteTasks(
         _ tasks: [OCKTask],
         callbackQueue: DispatchQueue = .main,
         completion: ((Result<[OCKTask], OCKStoreError>) -> Void)? = nil) {
-        
+
         transaction(inserts: [], updates: [], deletes: tasks) { result in
             callbackQueue.async {
                 completion?(result.map(\.deletes))
@@ -127,10 +127,10 @@ extension OCKStore {
             // Get the date highest date on which an outcome exists.
             // If there are no outcomes, then any update is safe.
             guard let latestDate = allOutcomes.map({ $0.startDate }).max()
-                else { continue }
+            else { continue }
 
             guard let proposedUpdate = tasks.first(where: { $0.id == task.id })
-                else { fatalError("Fetched an OCKCDTask for which an update was not proposed.") }
+            else { fatalError("Fetched an OCKCDTask for which an update was not proposed.") }
 
             if proposedUpdate.effectiveDate <= latestDate {
                 throw OCKStoreError.updateFailed(reason: """

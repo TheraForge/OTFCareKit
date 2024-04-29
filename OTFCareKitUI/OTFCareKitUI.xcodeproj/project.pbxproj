@@ -124,6 +124,7 @@
 		64E1BD4E2309FCF200DFFE52 /* OCKResponsiveLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1BD4D2309FCF200DFFE52 /* OCKResponsiveLayout.swift */; };
 		64EEC2382318253B00B1012F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64EEC2362318253B00B1012F /* Localizable.strings */; };
 		64EEC23B231825DD00B1012F /* OCKLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EEC23A231825DD00B1012F /* OCKLocalization.swift */; };
+		7C33549E2B485B740085D6B1 /* CardableContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C33549D2B485B740085D6B1 /* CardableContainerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -239,6 +240,7 @@
 		64E1BD4D2309FCF200DFFE52 /* OCKResponsiveLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OCKResponsiveLayout.swift; sourceTree = "<group>"; };
 		64EEC2372318253B00B1012F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		64EEC23A231825DD00B1012F /* OCKLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCKLocalization.swift; sourceTree = "<group>"; };
+		7C33549D2B485B740085D6B1 /* CardableContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardableContainerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -379,6 +381,7 @@
 				518F9D8722961BF5009CAA48 /* OCKStackView.swift */,
 				518F9D7E22961BF5009CAA48 /* OCKSeparatorView.swift */,
 				518F9D7B22961BF5009CAA48 /* OCKHeaderView.swift */,
+				7C33549D2B485B740085D6B1 /* CardableContainerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -826,6 +829,7 @@
 				64699E9922FC7B5000FF624F /* OCKLogButtonCell.swift in Sources */,
 				518F9D8A22961BF5009CAA48 /* OCKContactButton.swift in Sources */,
 				51B225A323EDDCFC00A2D11F /* NoHighlightStyle.swift in Sources */,
+				7C33549E2B485B740085D6B1 /* CardableContainerView.swift in Sources */,
 				518F9D8C22961BF5009CAA48 /* OCKChecklistTaskView.swift in Sources */,
 				518F9D9422961BF5009CAA48 /* OCKGridTaskCell.swift in Sources */,
 				516A1C4F244FA7E500BBF2D3 /* View+Extension.swift in Sources */,
@@ -1059,7 +1063,7 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = OTFCareKitUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1097,7 +1101,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Health_Debug;
 		};
@@ -1107,7 +1111,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				INFOPLIST_FILE = OTFCareKitUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1211,7 +1215,7 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = OTFCareKitUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1248,7 +1252,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Health;
 		};
@@ -1257,7 +1261,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = OTFCareKitUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1276,7 +1280,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				INFOPLIST_FILE = OTFCareKitUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1294,7 +1298,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = OTFCareKitUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1481,7 +1485,7 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = OTFCareKitUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1510,7 +1514,7 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = OTFCareKitUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1548,7 +1552,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Debug;
 		};
@@ -1574,7 +1578,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Release;
 		};
