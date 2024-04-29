@@ -321,7 +321,7 @@ private func performSynchronously<T>(
     dispatchGroup.enter()
 
     var closureResult: Result<T, OCKStoreError> = .failure(.timedOut(
-        reason: "Timed out after \(timeout) seconds."))
+                                                            reason: "Timed out after \(timeout) seconds."))
 
     closure { result in
         closureResult = result

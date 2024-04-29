@@ -307,9 +307,10 @@ public extension OCKDetailView {
         ///     "caption-2"   Regular    11    13
         ///
         /// h1, h2, h3, h4, h5 and p tags map to these sequentially.
-        // swiftlint:disable function_body_length
-        func defaultCSS(appending customCSS: String?, contentWidth: CGFloat, interfaceStyle: UIUserInterfaceStyle) -> String {
-
+        func defaultCSS(
+            appending customCSS: String?,
+            contentWidth: CGFloat,
+            interfaceStyle: UIUserInterfaceStyle) -> String {
             let largeTitleFontSize = UIFont.preferredFont(forTextStyle: .largeTitle).pointSize
             let title1FontSize = UIFont.preferredFont(forTextStyle: .title1).pointSize
             let title2FontSize = UIFont.preferredFont(forTextStyle: .title2).pointSize
@@ -321,9 +322,7 @@ public extension OCKDetailView {
             let footnoteFontSize = UIFont.preferredFont(forTextStyle: .footnote).pointSize
             let caption1FontSize = UIFont.preferredFont(forTextStyle: .caption1).pointSize
             let caption2FontSize = UIFont.preferredFont(forTextStyle: .caption2).pointSize
-
             let textColor = interfaceStyle == .light || interfaceStyle == .unspecified ? "black" : "white"
-
             return """
             <style>
             body, th, td {
@@ -371,13 +370,10 @@ public extension OCKDetailView {
                 padding-bottom:10px;
                 line-height: 1.5;
             }
-
             \(customCSS ?? "")
-
             </style>
             """
         }
-
     }
 }
 

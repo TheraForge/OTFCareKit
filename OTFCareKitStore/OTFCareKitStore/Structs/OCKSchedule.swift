@@ -67,7 +67,7 @@ public struct OCKSchedule: Codable, Equatable {
     /// - Note: This operation has an upperbound complexity of O(NlogN).
     public func startDate() -> Date {
         guard let earliestStartDate = elements.map({ $0.start }).sorted().min()
-            else { fatalError("OCKSchedule should always have at least 1 element!") }
+        else { fatalError("OCKSchedule should always have at least 1 element!") }
         return earliestStartDate
     }
 

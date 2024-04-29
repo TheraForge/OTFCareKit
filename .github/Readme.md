@@ -4,9 +4,22 @@
 The TheraForge OTFCareKit is a framework for creating digital health applications that help people to better understand and manage their health. The framework provides modules that can be used out of the box, or extended and customized for more targeted use cases.
 
 ## Change Log
-  * Release 2.0.2-beta.3:
-    * Added `OTFAttachment` struct that represents an attachment e.g. user's profile picture and consent form
-    * Added computed properties attachments and appSettings to conveniently get all the attachments and settings from OCKPatient's userInfo object
+<details open>
+<summary>Release 2.0.2-beta.4</summary>
+<ul>
+<li>Added WatchOS target</li>
+</ul>
+</details>
+
+<details>
+<summary>Release 2.0.2-beta.3</summary>
+<ul>
+<li>Added `OTFAttachment` struct that represents an attachment e.g. user's profile picture and consent form</li>
+<li>Added computed properties attachments and appSettings to conveniently get all the attachments and settings from OCKPatient's userInfo object</li>
+<li>Added WatchOS support</li>
+</ul>
+</details>
+
 
 
 Please refer to the top-level parent framework: [OTFToolBox](https://github.com/TheraForge/OTFToolBox)

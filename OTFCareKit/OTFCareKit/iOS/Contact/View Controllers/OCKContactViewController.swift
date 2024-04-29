@@ -48,7 +48,7 @@ public protocol OCKContactViewControllerDelegate: AnyObject {
 
 /// A view controller that displays a contact view and keep it synchronized with a store.
 open class OCKContactViewController<Controller: OCKContactController, ViewSynchronizer: OCKContactViewSynchronizerProtocol>:
-UIViewController, OCKContactViewDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate {
+    UIViewController, OCKContactViewDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate {
 
     // MARK: Properties
 
@@ -135,7 +135,6 @@ UIViewController, OCKContactViewDelegate, MFMessageComposeViewControllerDelegate
     }
 
     // MARK: - Methods
-    // swiftlint:disable trailing_closure
     // Create a subscription that updates the view when the view model is updated.
     private func startObservingViewModel() {
         controller.$contact

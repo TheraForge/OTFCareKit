@@ -56,8 +56,8 @@ public struct OCKOutcomeValue: Codable, Equatable, CustomStringConvertible {
 
     public static func == (lhs: OCKOutcomeValue, rhs: OCKOutcomeValue) -> Bool {
         lhs.hasSameValueAs(rhs) &&
-        lhs.type == rhs.type &&
-        lhs.kind == rhs.kind
+            lhs.type == rhs.type &&
+            lhs.kind == rhs.kind
     }
 
     /// An optional property that can be used to specify what kind of value this is (e.g. blood pressure, qualitative stress, weight)

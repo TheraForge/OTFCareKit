@@ -106,8 +106,8 @@ class TestNumericProgressTaskViewModel: XCTestCase {
     }
 
     func testViewModelRoundsDecimalForProgressAndGoalValues() {
-        let targetValue: Double = 100.111_1
-        let progressValue: Double = 50.111_1
+        let targetValue: Double = 100.1111
+        let progressValue: Double = 50.1111
         let taskEvents = OCKTaskEvents.mock(outcomeValue: progressValue, targetValue: targetValue)
         controller.taskEvents = taskEvents
         let updated = expectation(description: "updated view model")

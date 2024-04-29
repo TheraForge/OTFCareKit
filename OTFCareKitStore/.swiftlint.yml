@@ -19,6 +19,8 @@ disabled_rules:
   - unused_capture_list # It is standard swift compiler warning
   - trailing_whitespace
   - force_cast
+  - trailing_closure
+  - force_try
 # optional linting rules
 opt_in_rules:
   - closure_spacing # spaces around closure body

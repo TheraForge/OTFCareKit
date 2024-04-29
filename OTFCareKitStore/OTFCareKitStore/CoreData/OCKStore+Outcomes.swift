@@ -116,7 +116,7 @@ extension OCKStore {
 
     private func buildPredicate(for query: OCKOutcomeQuery) -> NSPredicate {
         var predicate = query.basicPredicate(enforceDateInterval: false)
-        
+
         if let interval = query.dateInterval {
 
             let beforePredicate = NSPredicate(
@@ -137,7 +137,7 @@ extension OCKStore {
                 #keyPath(OCKCDOutcome.next.effectiveDate),
                 interval.end as NSDate
             )
-            
+
             predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
                 predicate, beforePredicate, afterPredicate, nextPredicate
             ])
@@ -157,7 +157,7 @@ extension OCKStore {
             let taskPredicate = NSPredicate(format: "%K IN %@", #keyPath(OCKCDOutcome.task.remoteID), query.taskRemoteIDs)
             predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, taskPredicate])
         }
-        
+
         return predicate
     }
 

@@ -1,21 +1,21 @@
 /*
  Copyright (c) 2019, Apple Inc. All rights reserved.
- 
+
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
- 
+
  1.  Redistributions of source code must retain the above copyright notice, this
  list of conditions and the following disclaimer.
- 
+
  2.  Redistributions in binary form must reproduce the above copyright notice,
  this list of conditions and the following disclaimer in the documentation and/or
  other materials provided with the distribution.
- 
+
  3. Neither the name of the copyright holder(s) nor the names of any contributors
  may be used to endorse or promote products derived from this software without
  specific prior written permission. No license is granted to the trademarks of
  the copyright holders even if such marks are included in this software.
- 
+
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -117,7 +117,7 @@ public extension OCKAnyReadOnlyOutcomeStore {
     func fetchAnyOutcome(query: OCKOutcomeQuery, callbackQueue: DispatchQueue = .main,
                          completion: @escaping OCKResultClosure<OCKAnyOutcome>) {
         fetchAnyOutcomes(query: query, callbackQueue: callbackQueue, completion:
-            chooseFirst(then: completion, replacementError: .fetchFailed(reason: "No matching outcome found")))
+                            chooseFirst(then: completion, replacementError: .fetchFailed(reason: "No matching outcome found")))
     }
 }
 
@@ -127,16 +127,16 @@ public extension OCKAnyOutcomeStore {
 
     func addAnyOutcome(_ outcome: OCKAnyOutcome, callbackQueue: DispatchQueue = .main, completion: OCKResultClosure<OCKAnyOutcome>? = nil) {
         addAnyOutcomes([outcome], callbackQueue: callbackQueue, completion:
-            chooseFirst(then: completion, replacementError: .addFailed(reason: "Failed to add outcome")))
+                        chooseFirst(then: completion, replacementError: .addFailed(reason: "Failed to add outcome")))
     }
 
     func updateAnyOutcome(_ outcome: OCKAnyOutcome, callbackQueue: DispatchQueue = .main, completion: OCKResultClosure<OCKAnyOutcome>? = nil) {
         updateAnyOutcomes([outcome], callbackQueue: callbackQueue, completion:
-            chooseFirst(then: completion, replacementError: .updateFailed(reason: "Failed to update outcome")))
+                            chooseFirst(then: completion, replacementError: .updateFailed(reason: "Failed to update outcome")))
     }
 
     func deleteAnyOutcome(_ outcome: OCKAnyOutcome, callbackQueue: DispatchQueue = .main, completion: OCKResultClosure<OCKAnyOutcome>? = nil) {
         deleteAnyOutcomes([outcome], callbackQueue: callbackQueue, completion:
-            chooseFirst(then: completion, replacementError: .deleteFailed(reason: "Failed to delete outcome")))
+                            chooseFirst(then: completion, replacementError: .deleteFailed(reason: "Failed to delete outcome")))
     }
 }

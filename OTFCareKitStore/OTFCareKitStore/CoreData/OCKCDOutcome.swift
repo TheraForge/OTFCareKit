@@ -39,7 +39,6 @@ class OCKCDOutcome: OCKCDVersionedObject {
     @NSManaged var startDate: Date
     @NSManaged var endDate: Date
 
-    // swiftlint:disable force_try
     convenience init(outcome: OCKOutcome, context: NSManagedObjectContext) {
         self.init(entity: Self.entity(), insertInto: context)
         self.copyVersionedValue(value: outcome, context: context)
@@ -60,7 +59,7 @@ class OCKCDOutcome: OCKCDVersionedObject {
     override func makeValue() -> OCKVersionedObjectCompatible {
         makeOutcome()
     }
-    
+
     func makeOutcome() -> OCKOutcome {
 
         var outcome = OCKOutcome(
@@ -70,7 +69,7 @@ class OCKCDOutcome: OCKCDVersionedObject {
         )
 
         outcome.copyVersionedValues(from: self)
-        
+
         return outcome
     }
 }

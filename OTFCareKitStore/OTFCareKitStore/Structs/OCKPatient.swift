@@ -37,9 +37,9 @@ public struct OCKUserInfoKeys {
 }
 
 public struct OCKPatientAttachments: Codable {
-    public let Profile: OCKAttachment?
-    public let ConsentForm: OCKAttachment?
-    
+    public let profile: OCKAttachment?
+    public let consentForm: OCKAttachment?
+
     public struct OCKAttachment: Codable {
         public let contentType: String
         public let revpos: String
@@ -52,9 +52,7 @@ public struct OCKPatientAttachments: Codable {
         public let fileName: String
         public let owner: String
         public let attachmentID: String
-        
-        
-        
+
         // swiftlint:disable:next nesting
         public enum CodingKeys: String, CodingKey {
             case contentType = "contentType"
@@ -69,7 +67,7 @@ public struct OCKPatientAttachments: Codable {
             case attrev
             case attachmentID
         }
-        
+
         public init(contentType: String,
                     revpos: String,
                     hashFileKey: String,
@@ -98,10 +96,10 @@ public struct OCKPatientAttachments: Codable {
 
 public struct OCKPatientAppSettings: Codable {
     public let playLists: [PlayLists]
-    
+
     public struct PlayLists: Codable {
         public let uuid: String
-        
+
         public init(uuid: String) {
             self.uuid = uuid
         }
@@ -182,7 +180,7 @@ extension OCKPatient: OCKVersionedObjectCompatible {
     func entity() -> OCKEntity {
         .patient(self)
     }
-    
+
     func insert(context: NSManagedObjectContext) -> OCKCDVersionedObject {
         OCKCDPatient(patient: self, context: context)
     }
@@ -197,7 +195,7 @@ public extension OCKPatient {
         let attachmentsObject = try? docoder.decode(OCKPatientAttachments.self, from: attachmentsData)
         return attachmentsObject
     }
-    
+
     var appSettings: OCKPatientAppSettings? {
         guard let appSettings = userInfo?[OCKUserInfoKeys.appSettings],
               let appSettingsData = appSettings.data(using: .utf8) else { return nil }

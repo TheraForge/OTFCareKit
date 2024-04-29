@@ -1,21 +1,21 @@
 /*
  Copyright (c) 2019, Apple Inc. All rights reserved.
- 
+
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
- 
+
  1.  Redistributions of source code must retain the above copyright notice, this
  list of conditions and the following disclaimer.
- 
+
  2.  Redistributions in binary form must reproduce the above copyright notice,
  this list of conditions and the following disclaimer in the documentation and/or
  other materials provided with the distribution.
- 
+
  3. Neither the name of the copyright holder(s) nor the names of any contributors
  may be used to endorse or promote products derived from this software without
  specific prior written permission. No license is granted to the trademarks of
  the copyright holders even if such marks are included in this software.
- 
+
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -123,7 +123,7 @@ public extension OCKAnyReadOnlyCarePlanStore {
         query.ids = [id]
 
         fetchAnyCarePlans(query: query, callbackQueue: callbackQueue, completion:
-            chooseFirst(then: completion, replacementError: .fetchFailed(reason: "No care plan with matching ID")))
+                            chooseFirst(then: completion, replacementError: .fetchFailed(reason: "No care plan with matching ID")))
     }
 }
 
@@ -132,16 +132,16 @@ public extension OCKAnyReadOnlyCarePlanStore {
 public extension OCKAnyCarePlanStore {
     func addAnyCarePlan(_ plan: OCKAnyCarePlan, callbackQueue: DispatchQueue = .main, completion: OCKResultClosure<OCKAnyCarePlan>? = nil) {
         addAnyCarePlans([plan], callbackQueue: callbackQueue, completion:
-            chooseFirst(then: completion, replacementError: .addFailed(reason: "Failed to add care plan")))
+                            chooseFirst(then: completion, replacementError: .addFailed(reason: "Failed to add care plan")))
     }
 
     func updateAnyCarePlan(_ plan: OCKAnyCarePlan, callbackQueue: DispatchQueue = .main, completion: OCKResultClosure<OCKAnyCarePlan>? = nil) {
         updateAnyCarePlans([plan], callbackQueue: callbackQueue, completion:
-            chooseFirst(then: completion, replacementError: .updateFailed(reason: "Failed to update care plan")))
+                            chooseFirst(then: completion, replacementError: .updateFailed(reason: "Failed to update care plan")))
     }
 
     func deleteAnyCarePlan(_ plan: OCKAnyCarePlan, callbackQueue: DispatchQueue = .main, completion: OCKResultClosure<OCKAnyCarePlan>? = nil) {
         deleteAnyCarePlans([plan], callbackQueue: callbackQueue, completion:
-            chooseFirst(then: completion, replacementError: .deleteFailed(reason: "Failed to delete care plan")))
+                            chooseFirst(then: completion, replacementError: .deleteFailed(reason: "Failed to delete care plan")))
     }
 }

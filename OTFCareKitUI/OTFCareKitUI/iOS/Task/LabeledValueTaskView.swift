@@ -102,7 +102,6 @@ public extension LabeledValueTaskView where Header == _LabeledValueTaskViewHeade
         }, detailDisclosure: detailDisclosure)
     }
 }
-// swiftlint:disable trailing_closure
 public extension LabeledValueTaskView where DetailDisclosure == _LabeledValueTaskViewDetailDisclosure {
 
     /// Create an instance with the default detail disclosure.

@@ -1,21 +1,21 @@
 /*
  Copyright (c) 2020, Apple Inc. All rights reserved.
- 
+
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
- 
+
  1.  Redistributions of source code must retain the above copyright notice, this
  list of conditions and the following disclaimer.
- 
+
  2.  Redistributions in binary form must reproduce the above copyright notice,
  this list of conditions and the following disclaimer in the documentation and/or
  other materials provided with the distribution.
- 
+
  3. Neither the name of the copyright holder(s) nor the names of any contributors
  may be used to endorse or promote products derived from this software without
  specific prior written permission. No license is granted to the trademarks of
  the copyright holders even if such marks are included in this software.
- 
+
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -68,13 +68,13 @@ public extension OCKHealthKitPassthroughStore {
             let tasks = try fetchTasks(for: outcomes)
             let samples = try outcomes.map { outcome throws -> HKObject in
                 guard outcome.isOwnedByApp
-                    else { throw OCKStoreError.addFailed(reason: "Cannot persist an OCKHealthKitOutcome that is not owned by this app!") }
+                else { throw OCKStoreError.addFailed(reason: "Cannot persist an OCKHealthKitOutcome that is not owned by this app!") }
                 guard outcome.values.count == 1
-                    else { throw OCKStoreError.addFailed(reason: "OCKHealthKitOutcomes must have exactly 1 value, but got \(outcome.values.count).") }
+                else { throw OCKStoreError.addFailed(reason: "OCKHealthKitOutcomes must have exactly 1 value, but got \(outcome.values.count).") }
                 guard let value = outcome.values.first?.doubleValue
-                    else { throw OCKStoreError.addFailed(reason: "OCKHealthKitOutcome's value must be of type Double, but was not.") }
+                else { throw OCKStoreError.addFailed(reason: "OCKHealthKitOutcome's value must be of type Double, but was not.") }
                 guard let task = tasks.first(where: { $0.uuid == outcome.taskUUID })
-                    else { throw OCKStoreError.addFailed(reason: "No task could be for outcome") }
+                else { throw OCKStoreError.addFailed(reason: "No task could be for outcome") }
 
                 let unit = task.healthKitLinkage.unit
                 let quantity = HKQuantity(unit: unit, doubleValue: value)
@@ -91,7 +91,7 @@ public extension OCKHealthKitPassthroughStore {
                 if let error = error {
                     callbackQueue.async {
                         completion?(.failure(.addFailed(
-                            reason: "Failed to add outcomes to HealthKit. Error: \(error.localizedDescription)")))
+                                                reason: "Failed to add outcomes to HealthKit. Error: \(error.localizedDescription)")))
                     }
                     return
                 }
@@ -111,7 +111,7 @@ public extension OCKHealthKitPassthroughStore {
         } catch {
             callbackQueue.async {
                 completion?(.failure(.addFailed(
-                    reason: "Failed to add outcomes to HealthKit. Error: \(error.localizedDescription)")))
+                                        reason: "Failed to add outcomes to HealthKit. Error: \(error.localizedDescription)")))
             }
         }
         #endif
@@ -123,7 +123,6 @@ public extension OCKHealthKitPassthroughStore {
             completion?(.failure(.updateFailed(reason: "Data in HealthKit can only be added and deleted. Updates are not allowed.")))
         }
     }
-    // swiftlint:disable trailing_closure
     func deleteOutcomes(_ outcomes: [OCKHealthKitOutcome], callbackQueue: DispatchQueue = .main,
                         completion: ((Result<[OCKHealthKitOutcome], OCKStoreError>) -> Void)? = nil) {
         #if (CARE && HEALTH) || HEALTH
@@ -144,7 +143,7 @@ public extension OCKHealthKitPassthroughStore {
                 if let error = error {
                     callbackQueue.async {
                         completion?(.failure(.deleteFailed(
-                            reason: "Failed to delete HealthKit samples. Error: \(error.localizedDescription)")))
+                                                reason: "Failed to delete HealthKit samples. Error: \(error.localizedDescription)")))
                     }
                     return
                 }
@@ -156,7 +155,7 @@ public extension OCKHealthKitPassthroughStore {
         } catch {
             callbackQueue.async {
                 completion?(.failure(.deleteFailed(
-                    reason: "Failed to delete HealthKit samples. Error: \(error.localizedDescription)")))
+                                        reason: "Failed to delete HealthKit samples. Error: \(error.localizedDescription)")))
             }
         }
         #endif

@@ -242,7 +242,7 @@ open class OCKTaskController: ObservableObject {
             .sink { [unowned self] event in
                 self.taskEvents.update(event: self.modified(event: event))
             }
-        .store(in: &taskCancellables, key: task.id)
+            .store(in: &taskCancellables, key: task.id)
     }
 
     private func subscribeTo(task: OCKAnyTask, query: OCKEventQuery) {
@@ -291,7 +291,7 @@ open class OCKTaskController: ObservableObject {
                 completion?(.failure(error))
             }
 
-        // if the event is incomplete, delete the outcome
+            // if the event is incomplete, delete the outcome
         } else {
             guard let outcome = event.outcome else { return }
             storeManager.store.deleteAnyOutcome(outcome) { result in
@@ -333,7 +333,7 @@ open class OCKTaskController: ObservableObject {
                 completion?(result.mapError { $0 as Error })
             }
 
-        // Else Save a new outcome if one does not exist
+            // Else Save a new outcome if one does not exist
         } else {
             do {
                 let outcome = try makeOutcomeFor(event: event, withValues: [value])
@@ -427,8 +427,8 @@ open class OCKTaskController: ObservableObject {
         guard
             let outcome = event.outcome,
             index < outcome.values.count else {
-                throw OCKTaskControllerError.noOutcomeValueForEvent(event, index)
-            }
+            throw OCKTaskControllerError.noOutcomeValueForEvent(event, index)
+        }
 
         // Make an action sheet to delete the outcome value
         let actionSheet = UIAlertController(title: loc("LOG_ENTRY"), message: nil, preferredStyle: .actionSheet)

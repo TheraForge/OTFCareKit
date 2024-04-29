@@ -47,7 +47,7 @@ public protocol OCKTaskViewControllerDelegate: AnyObject {
 
 /// A view controller that displays a task view and keep it synchronized with a store.
 open class OCKTaskViewController<Controller: OCKTaskController, ViewSynchronizer: OCKTaskViewSynchronizerProtocol>:
-UIViewController, OCKTaskViewDelegate {
+    UIViewController, OCKTaskViewDelegate {
 
     // MARK: Properties
 
@@ -148,7 +148,6 @@ UIViewController, OCKTaskViewDelegate {
     }
 
     // MARK: - Methods
-    // swiftlint:disable trailing_closure
     // Create a subscription that updates the view when the view model is updated.
     private func startObservingViewModel() {
         controller.$taskEvents

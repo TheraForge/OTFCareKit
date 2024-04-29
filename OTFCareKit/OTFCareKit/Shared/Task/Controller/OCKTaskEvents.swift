@@ -131,7 +131,7 @@ public struct OCKTaskEvents: Collection, Identifiable {
         if let matchIndexPath = indexPath(of: event) {
             events[matchIndexPath.section][matchIndexPath.row] = event
             return event
-        // Else append the event
+            // Else append the event
         } else {
             let result = append(event: event)
             return result.0
@@ -162,7 +162,6 @@ public struct OCKTaskEvents: Collection, Identifiable {
     public var endIndex: Index { events.endIndex }
 
     public func makeIterator() -> Iterator { events.makeIterator() }
-    // swiftlint:disable identifier_name
     public func index(after i: Index) -> Index { events.index(after: i) }
     public subscript(index: Index) -> Iterator.Element { events[index] }
 

@@ -48,7 +48,7 @@ public protocol OCKChartViewControllerDelegate: AnyObject {
 
 /// A view controller that displays a chart view and keep it synchronized with a store.
 open class OCKChartViewController<Controller: OCKChartController, ViewSynchronizer: OCKChartViewSynchronizerProtocol>:
-UIViewController, OCKChartViewDelegate {
+    UIViewController, OCKChartViewDelegate {
 
     // MARK: Properties
 
@@ -127,7 +127,6 @@ UIViewController, OCKChartViewDelegate {
     }
 
     // MARK: - Methods
-    // swiftlint:disable trailing_closure
     // Create a subscription that updates the view when the view model is updated.
     private func startObservingViewModel() {
         controller.$dataSeries

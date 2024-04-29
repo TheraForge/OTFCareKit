@@ -218,14 +218,14 @@ public extension OCKReadOnlyEventStore where Task: OCKAnyVersionableTask {
         guard !scheduleEvents.isEmpty else { return [] }
         let offset = scheduleEvents[0].occurrence
         var events = scheduleEvents.map { OCKEvent<Task, Outcome>(task: task, outcome: nil, scheduleEvent: $0) }
-        
+
         for outcome in outcomes {
             let index = outcome.taskOccurrenceIndex - offset
             if (0..<events.count).contains(index) {
                 events[outcome.taskOccurrenceIndex - offset].outcome = outcome
             }
         }
-        
+
         return events
     }
 }

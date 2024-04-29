@@ -77,4 +77,3 @@ let package = Package(
             exclude: ["Info.plist"])
     ]
 )
-

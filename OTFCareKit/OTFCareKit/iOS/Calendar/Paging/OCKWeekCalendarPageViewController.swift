@@ -51,7 +51,7 @@ public protocol OCKWeekCalendarPageViewControllerDelegate: AnyObject {
 
 /// A view controller that allows paging through adjacent weeks of task adherence content.
 open class OCKWeekCalendarPageViewController:
-UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, OCKCalendarViewDelegate {
+    UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, OCKCalendarViewDelegate {
     // MARK: Properties
 
     /// Handles events related to an `OCKCalendarPageViewController`.

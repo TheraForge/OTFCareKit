@@ -36,57 +36,22 @@ import XCTest
 
 // Just testing access level
 private class CustomSimpleTaskViewSynchronizer: OCKSimpleTaskViewSynchronizer {
-    override func makeView() -> OCKSimpleTaskView {
-        return super.makeView()
-    }
-
-    override func updateView(_ view: OCKSimpleTaskView, context: OCKSynchronizationContext<OCKTaskEvents>) {
-        super.updateView(view, context: context)
-    }
 }
 
 // Just testing access level
 private class CustomInstructionsTaskViewSynchronizer: OCKInstructionsTaskViewSynchronizer {
-    override func makeView() -> OCKInstructionsTaskView {
-        return super.makeView()
-    }
-
-    override func updateView(_ view: OCKInstructionsTaskView, context: OCKSynchronizationContext<OCKTaskEvents>) {
-        super.updateView(view, context: context)
-    }
 }
 
 // Just testing access level
 private class CustomButtonLogTaskViewSynchronizer: OCKButtonLogTaskViewSynchronizer {
-    override func makeView() -> OCKButtonLogTaskView {
-        return super.makeView()
-    }
-
-    override func updateView(_ view: OCKButtonLogTaskView, context: OCKSynchronizationContext<OCKTaskEvents>) {
-        super.updateView(view, context: context)
-    }
 }
 
 // Just testing access level
 private class CustomChecklistTaskViewSynchronizer: OCKChecklistTaskViewSynchronizer {
-    override func makeView() -> OCKChecklistTaskView {
-        return super.makeView()
-    }
-
-    override func updateView(_ view: OCKChecklistTaskView, context: OCKSynchronizationContext<OCKTaskEvents>) {
-        super.updateView(view, context: context)
-    }
 }
 
 // Just testing access level
 private class CustomGridTaskViewSynchronizer: OCKGridTaskViewSynchronizer {
-    override func makeView() -> OCKGridTaskView {
-        return super.makeView()
-    }
-
-    override func updateView(_ view: OCKGridTaskView, context: OCKSynchronizationContext<OCKTaskEvents>) {
-        super.updateView(view, context: context)
-    }
 }
 
 private class MockTaskLabel: UILabel, OCKTaskDisplayable {
