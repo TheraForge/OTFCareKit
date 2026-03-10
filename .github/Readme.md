@@ -5,6 +5,13 @@ The TheraForge OTFCareKit is a framework for creating digital health application
 
 ## Change Log
 <details open>
+<summary>Release 2.0.2-tf.2</summary>
+<ul>
+<li>Updated dependencies for TheraForge 2.0.0 release</li>
+</ul>
+</details>
+
+<details>
 <summary>Release 2.0.2-beta.4</summary>
 <ul>
 <li>Added WatchOS target</li>

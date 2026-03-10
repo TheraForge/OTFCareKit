@@ -170,7 +170,7 @@ extension OCKStore {
         let request = NSFetchRequest<OCKCDVersionedObject>(entityName: T.entity().name!)
         request.predicate = existingPredicate
 
-        let existing = try context.performAndWait { try context.count(for: request) }
+        let existing = try context.performActionAndWait { try context.count(for: request) }
 
         if existing > 0 {
             throw OCKStoreError.invalidValue(reason: "\(T.entity().name!) with conflicting IDs or UUIDs already exists!")

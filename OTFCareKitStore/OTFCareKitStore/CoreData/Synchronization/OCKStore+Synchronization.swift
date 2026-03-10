@@ -36,7 +36,7 @@ extension NSManagedObjectContext {
 
     var clockID: UUID {
         get {
-            performAndWait {
+            performActionAndWait {
                 return OCKCDClock.fetch(context: self).uuid
             }
         } set {
@@ -48,7 +48,7 @@ extension NSManagedObjectContext {
 
     var knowledgeVector: OCKRevisionRecord.KnowledgeVector {
         get {
-            performAndWait {
+            performActionAndWait {
                 return OCKCDClock.fetch(context: self).vector
             }
         }
@@ -64,7 +64,7 @@ extension NSManagedObjectContext {
         knowledgeVector.clock(for: clockID)
     }
 
-    func performAndWait<T>(_ work: () throws -> T) throws -> T {
+    func performActionAndWait<T>(_ work: () throws -> T) throws -> T {
         var result = Result<T, Error>.failure(OCKStoreError.invalidValue(reason: "timeout"))
         performAndWait {
             result = Result(catching: work)
@@ -73,7 +73,7 @@ extension NSManagedObjectContext {
         return value
     }
 
-    func performAndWait<T>(_ work: () -> T) -> T {
+    func performActionAndWait<T>(_ work: () -> T) -> T {
         var value: T!
         performAndWait {
             value = work()
@@ -222,7 +222,7 @@ extension OCKStore: OCKRemoteSynchronizationDelegate {
 
     func computeRevision(since vector: OCKRevisionRecord.KnowledgeVector) throws -> OCKRevisionRecord {
 
-        let localRevisions = try context.performAndWait {
+        let localRevisions = try context.performActionAndWait {
             try supportedTypes
                 .map { ($0.entity(), vector) }
                 .flatMap(changedQuery)
@@ -259,7 +259,7 @@ extension OCKStore: OCKRemoteSynchronizationDelegate {
 
     /// - Note: Thread Safe
     private func findNextConflict() throws -> [OCKEntity]? {
-        try context.performAndWait { () throws -> [OCKEntity]? in
+        try context.performActionAndWait { () throws -> [OCKEntity]? in
 
             for entity in supportedTypes.map({ $0.entity() }) {
 

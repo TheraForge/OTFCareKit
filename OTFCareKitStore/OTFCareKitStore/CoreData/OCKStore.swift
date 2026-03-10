@@ -235,7 +235,7 @@ open class OCKStore: OCKStoreProtocol, Equatable {
     /// Deletes the contents of the store, resetting it to its initial state.
     public func reset() throws {
 
-        try context.performAndWait {
+        try context.performActionAndWait {
             for name in supportedTypes.map({ $0.entity().name! }) {
                 let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: name)
                 fetchRequest.includesPropertyValues = false
